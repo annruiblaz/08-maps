@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
@@ -12,7 +12,6 @@ export class FullScreenPageComponent implements AfterViewInit{
   public divMap?: ElementRef;
 
   ngAfterViewInit(): void {
-
     console.log(this.divMap);
 
     if(!this.divMap) {
@@ -25,9 +24,6 @@ export class FullScreenPageComponent implements AfterViewInit{
       center: [0, 0], // starting position [lng, lat]
       zoom: 1 // starting zoom
     });
-
-/*     console.log(this.divMap);
- */
   }
 
 }
