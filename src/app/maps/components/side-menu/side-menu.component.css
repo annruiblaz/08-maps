@@ -1,0 +1,4 @@
+li {
+    cursor: pointer;
+    transition: .2s all ease;
+}
