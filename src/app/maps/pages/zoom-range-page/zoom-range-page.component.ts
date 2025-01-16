@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 
 import maplibregl, { LngLat } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
@@ -7,17 +7,20 @@ import 'maplibre-gl/dist/maplibre-gl.css';
   templateUrl: './zoom-range-page.component.html',
   styleUrl: './zoom-range-page.component.css'
 })
-export class ZoomRangePageComponent implements AfterViewInit{
+export class ZoomRangePageComponent implements AfterViewInit, OnDestroy{
   @ViewChild('map',{static: false})
   public divMap?: ElementRef;
 
   public zoom: number = 5;
   public map?: maplibregl.Map;
-  public currentlngLat: LngLat = new LngLat(-2.8755418432185706, 40.04566424367687);
+  public currentlngLat: LngLat = new LngLat(-2.875, 40.045);
+  public lng?: number;
+  public lat?: number;
 
   ngAfterViewInit(): void {
-      console.log(this.divMap);
-  
+
+    this.getLngLatForHtml();
+
       if(!this.divMap) {
         throw 'El elemento html no se pudo encontrar.';
       }
@@ -30,6 +33,10 @@ export class ZoomRangePageComponent implements AfterViewInit{
       });
 
       this.mapListeners();
+  }
+
+  ngOnDestroy(): void {
+    this.map?.remove();
   }
 
   mapListeners() {
@@ -46,6 +53,7 @@ export class ZoomRangePageComponent implements AfterViewInit{
 
     this.map.on('move', () => {
       this.currentlngLat = this.map!.getCenter();
+      this.getLngLatForHtml();
     });
   }
 
@@ -57,9 +65,14 @@ export class ZoomRangePageComponent implements AfterViewInit{
     this.map?.zoomOut();
   }
 
-  zoomChanged(value: string) {
+  zoomChanged(value?: string) {
     this.zoom = Number(value);
     this.map?.zoomTo(this.zoom);
+  }
+
+  getLngLatForHtml() {
+    this.lng = parseFloat(this.currentlngLat.lng.toFixed(3));
+    this.lat = parseFloat(this.currentlngLat.lat.toFixed(3));
   }
 
 }

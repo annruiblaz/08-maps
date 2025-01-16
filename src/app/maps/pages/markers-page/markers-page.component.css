@@ -1,0 +1,32 @@
+#map {
+    width: 100vw;
+    height: 100vh;
+}
+
+.list-group {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.btn {
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+    font-weight: 500;
+}
+
+.markers {
+    width: 100%;
+    max-height: 60vh;
+    max-width: 150px ;
+    overflow-y: auto;
+}
+
+.list-group-item {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
