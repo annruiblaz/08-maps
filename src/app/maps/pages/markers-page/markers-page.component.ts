@@ -1,15 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+
 import maplibregl, { LngLat, Marker, Map } from 'maplibre-gl';
 
-interface MarkerAndColor {
-  color: string;
-  marker: Marker
-}
-
-interface PlainMarker {
-  color: string;
-  lngLat: number[];
-}
+import { MarkerAndColor, PlainMarker } from '../../interfaces/interfaces';
 
 @Component({
   templateUrl: './markers-page.component.html',
