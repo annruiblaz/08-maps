@@ -12,18 +12,19 @@ export class FullScreenPageComponent implements AfterViewInit{
   public divMap?: ElementRef;
 
   ngAfterViewInit(): void {
-    console.log(this.divMap);
 
     if(!this.divMap) {
       throw 'El elemento html no se pudo encontrar.';
     }
 
-    const map = new maplibregl.Map({
-      container: this.divMap.nativeElement,
-      style: 'https://demotiles.maplibre.org/style.json', // style URL
-      center: [0, 0], // starting position [lng, lat]
-      zoom: 1 // starting zoom
-    });
+    if(typeof window !== 'undefined') {
+      const map = new maplibregl.Map({
+        container: this.divMap.nativeElement,
+        style: 'https://demotiles.maplibre.org/style.json', // style URL
+        center: [0, 0], // starting position [lng, lat]
+        zoom: 1 // starting zoom
+      });
+    }
   }
 
 }

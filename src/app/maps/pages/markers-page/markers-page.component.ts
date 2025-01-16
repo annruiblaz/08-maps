@@ -17,7 +17,6 @@ export class MarkersPageComponent {
   public markers: MarkerAndColor[] = [];
 
   ngAfterViewInit(): void {
-    console.log(this.divMap);
 
     if(!this.divMap) {
       throw 'El elemento html no se pudo encontrar.';

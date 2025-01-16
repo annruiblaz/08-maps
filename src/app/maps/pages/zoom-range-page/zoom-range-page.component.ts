@@ -25,14 +25,16 @@ export class ZoomRangePageComponent implements AfterViewInit, OnDestroy{
         throw 'El elemento html no se pudo encontrar.';
       }
   
-      this.map = new maplibregl.Map({
-        container: this.divMap.nativeElement,
-        style: 'https://demotiles.maplibre.org/style.json', // style URL
-        center: this.currentlngLat,
-        zoom: this.zoom
-      });
-
-      this.mapListeners();
+      if(typeof window !== 'undefined') {
+        this.map = new maplibregl.Map({
+          container: this.divMap.nativeElement,
+          style: 'https://demotiles.maplibre.org/style.json', // style URL
+          center: this.currentlngLat,
+          zoom: this.zoom
+        });
+  
+        this.mapListeners();
+      }
   }
 
   ngOnDestroy(): void {
