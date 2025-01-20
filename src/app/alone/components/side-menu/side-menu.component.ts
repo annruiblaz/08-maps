@@ -1,10 +1,18 @@
 import { Component } from '@angular/core';
-import { MenuItem } from '../../interfaces/interfaces';
+
+import { MenuItem } from '../../../maps/interfaces/interfaces';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'maps-side-menu',
+  standalone: true,
+  selector: 'side-menu',
   templateUrl: './side-menu.component.html',
-  styleUrl: './side-menu.component.css'
+  styleUrl: './side-menu.component.css',
+  imports: [
+    CommonModule,
+    RouterModule
+  ]
 })
 export class SideMenuComponent {
   public menuItems: MenuItem[] = [
@@ -12,7 +20,7 @@ export class SideMenuComponent {
     {route: '/maps/zoom-range', name: 'Zoom-Range'},
     {route: '/maps/markers', name: 'Markers'},
     {route: '/maps/properties', name: 'Properties'},
-    {route: '/maps/standalone', name: 'Standalone'},
+    {route: '/alone', name: 'Standalone'},
 
   ]
 }
